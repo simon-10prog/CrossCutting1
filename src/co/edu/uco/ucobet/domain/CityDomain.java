@@ -9,20 +9,21 @@ import co.edu.uco.crosscutting.helpers.UUIDHelper;
 public class CityDomain extends Domain {
 
 	private String name;
-	private CountryDomain country;
+	private static StateDomain state;
 	
-	private CityDomain (final UUID id, final String name, final CountryDomain country) {
+	private CityDomain (final UUID id, final String name, final StateDomain State) {
 		super(id);
 		setName(name);
-		setCountry(country);
+		setState(State);
+		
 	}	
 	
-	public static final CityDomain create (final UUID id, final String name, final CountryDomain country) {
-		return new CityDomain(id, name, country);
+	public static final CityDomain create (final UUID id, final String name, final StateDomain State) {
+		return new CityDomain(id, name, state);
 	}
 	
 	static final CityDomain create () {
-		return new CityDomain(UUIDHelper.getDefault(), TextHelper.EMPTY, CountryDomain.create());
+		return new CityDomain(UUIDHelper.getDefault(), TextHelper.EMPTY, StateDomain.create());
 	}
 	public String getName() {
 		return name;
@@ -37,12 +38,12 @@ public class CityDomain extends Domain {
 		return super.getId();
 	}
 
-	protected CountryDomain getCountry() {
-		return country;
+	protected StateDomain getState() {
+		return state;
 	}
 
-	private void setCountry(final CountryDomain country) {
-		this.country = ObjectHelper.getDefault(country, CountryDomain.create());
+	private void setState(final StateDomain state) {
+		CityDomain.state = ObjectHelper.getDefault(state, StateDomain.create());
 	}
 	
 	
