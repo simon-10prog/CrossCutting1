@@ -14,12 +14,12 @@ public class TextHelper {
 	}
 	
 	public static boolean isEmpty(final String string) {
-		return EMPTY.equals(getDefault(string, null));
+		return EMPTY.equals(getDefault(string, string));
 	}
 	public static boolean isEmptyapplyingTrim(final String string) {
 		return isEmpty(applyTrim(string));
 	}
 	public static String applyTrim(final String string) {
-		return getDefault(string, null).trim();
+		return getDefault(string, string).trim();
 	}
 }
